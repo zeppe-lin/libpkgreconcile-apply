@@ -1,0 +1,38 @@
+libpkgreconcile-apply(3)
+
+# NAME
+
+libpkgreconcile-apply - project completed package application into reconciliation state
+
+# DESCRIPTION
+
+*libpkgreconcile-apply* translates completed *libpkgapply* rejected-object
+consequences into package-independent *libpkgreconcile* pending values.
+
+It projects the exact managed target, canonical package path, retained side,
+rejected-object store identity, and rejected-object record identity already
+established by completed application evidence.
+
+# TARGET REFERENCES
+
+The provider *libpkgreconcile-apply/managed-target/v1* carries the exact 32-byte
+*managed_target_identity* digest.
+
+# REJECTED-OBJECT LOCATORS
+
+The provider *libpkgreconcile-apply/rejected-object/v1* carries exactly 64 bytes:
+the 32-byte *rejected_object_store_identity* followed by the 32-byte
+*rejected_object_record_identity*.
+
+Consumers should use the public decoder instead of interpreting these bytes.
+No filesystem pathname is encoded.
+
+# BOUNDARY
+
+The library does not open rejected objects, persist inventories, inspect
+installed package state, infer ownership, choose reconciliation dispositions,
+or coordinate transactions.
+
+# SEE ALSO
+
+libpkgapply(3), libpkgreconcile(3)
