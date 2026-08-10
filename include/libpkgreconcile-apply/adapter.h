@@ -74,15 +74,25 @@ class PKGRECONCILE_APPLY_API completed_reconciliation_projection final {
 public:
   /** @return Exact managed-target reconciliation reference. */
   [[nodiscard]] const reconciliation_target_reference& target() const noexcept;
+  /** @return Exact operation-plan identity retained by completed evidence. */
+  [[nodiscard]] const pkgplan::operation_plan_identity& plan() const noexcept;
+  /** @return Exact physical application-attempt identity. */
+  [[nodiscard]] const pkgapply::application_attempt_identity&
+  attempt() const noexcept;
   /** @return Pending values in completed-evidence path order. */
   [[nodiscard]] const std::vector<pending_reconciliation>& pending() const noexcept;
 private:
   friend PKGRECONCILE_APPLY_API completed_reconciliation_projection
   project_completed_application(const pkgapply::application_target_context& target,
                                 const pkgapply::completed_application_evidence& evidence);
-  completed_reconciliation_projection(reconciliation_target_reference target,
-                                      std::vector<pending_reconciliation> pending);
+  completed_reconciliation_projection(
+      reconciliation_target_reference target,
+      pkgplan::operation_plan_identity plan,
+      pkgapply::application_attempt_identity attempt,
+      std::vector<pending_reconciliation> pending);
   reconciliation_target_reference target_;
+  pkgplan::operation_plan_identity plan_;
+  pkgapply::application_attempt_identity attempt_;
   std::vector<pending_reconciliation> pending_;
 };
 

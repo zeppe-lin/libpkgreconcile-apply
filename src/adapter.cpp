@@ -67,11 +67,24 @@ const pkgapply::rejected_object_record_identity& rejected_object_reference::reco
 
 completed_reconciliation_projection::completed_reconciliation_projection(
     reconciliation_target_reference target,
+    pkgplan::operation_plan_identity plan,
+    pkgapply::application_attempt_identity attempt,
     std::vector<pending_reconciliation> pending)
-    : target_(std::move(target)), pending_(std::move(pending))
+    : target_(std::move(target)), plan_(std::move(plan)),
+      attempt_(std::move(attempt)), pending_(std::move(pending))
 {
 }
 const reconciliation_target_reference& completed_reconciliation_projection::target() const noexcept { return target_; }
+const pkgplan::operation_plan_identity&
+completed_reconciliation_projection::plan() const noexcept
+{
+  return plan_;
+}
+const pkgapply::application_attempt_identity&
+completed_reconciliation_projection::attempt() const noexcept
+{
+  return attempt_;
+}
 const std::vector<pending_reconciliation>&
 completed_reconciliation_projection::pending() const noexcept
 {
@@ -169,7 +182,8 @@ project_completed_application(const pkgapply::application_target_context& target
     }
   }
   return completed_reconciliation_projection(
-      std::move(target_reference), std::move(pending));
+      std::move(target_reference), evidence.plan(), evidence.attempt(),
+      std::move(pending));
 }
 
 } // namespace pkgreconcile::apply_adapter

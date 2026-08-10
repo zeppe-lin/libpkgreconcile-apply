@@ -9,9 +9,10 @@ libpkgreconcile-apply - project completed package application into reconciliatio
 *libpkgreconcile-apply* translates completed *libpkgapply* rejected-object
 consequences into package-independent *libpkgreconcile* pending values.
 
-It projects the exact managed target, canonical package path, retained side,
-rejected-object store identity, and rejected-object record identity already
-established by completed application evidence.
+It projects the exact managed target, accepted operation plan, physical
+application attempt, canonical package path, retained side, rejected-object
+store identity, and rejected-object record identity already established by
+completed application evidence.
 
 # TARGET REFERENCES
 

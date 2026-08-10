@@ -7,6 +7,8 @@ pending values.
 It translates only authority already present in a completed application:
 
 - the orchestrator-managed target identity;
+- the accepted operation-plan identity;
+- the physical application-attempt identity;
 - the rejected-object store identity;
 - the immutable rejected-object record identity;
 - the canonical operated package path; and
@@ -18,7 +20,11 @@ state, infer package ownership, or choose a user disposition.
 
 ## Projection
 
-A completed rejected consequence becomes one `pending_reconciliation`.
+A completed rejected consequence becomes one `pending_reconciliation`. The
+containing `completed_reconciliation_projection` also retains the exact operation
+plan and physical application attempt so a concrete provider composition can
+prove that reopened rejected records belong to the completed application that
+projected them.
 
 The target reference uses provider
 `libpkgreconcile-apply/managed-target/v1` and contains the exact 32-byte

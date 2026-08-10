@@ -24,6 +24,11 @@ grep -F '64 bytes' "$root/README.md" >/dev/null || fail 'README omits object loc
 grep -F '32-byte' "$root/man/libpkgreconcile-apply.3.scdoc" >/dev/null || fail 'manual omits target digest width'
 grep -F '64 bytes' "$root/man/libpkgreconcile-apply.3.scdoc" >/dev/null || fail 'manual omits object locator width'
 
+for document in "$root/README.md" "$root/DESIGN.md" "$root/man/libpkgreconcile-apply.3.scdoc"; do
+  grep -Ei 'operation[- ]plan' "$document" >/dev/null || fail "$(basename "$document") omits retained plan authority"
+  grep -Ei 'application[- ]attempt' "$document" >/dev/null || fail "$(basename "$document") omits retained attempt authority"
+done
+
 # The adapter owns projection, not mechanisms or durable state. Public docs must
 # state those negative boundaries explicitly rather than implying them by omission.
 grep -F 'does not open a rejected-object store' "$root/README.md" >/dev/null || fail 'README omits rejected-store opening boundary'

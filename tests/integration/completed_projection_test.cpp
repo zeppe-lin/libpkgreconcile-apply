@@ -165,6 +165,10 @@ int main()
     TEST_CHECK(decode_managed_target(projection.target()) ==
                context.managed_target());
   });
+  runner.run("projection retains exact plan and attempt", [&] {
+    TEST_CHECK(projection.plan() == evidence.plan());
+    TEST_CHECK(projection.attempt() == evidence.attempt());
+  });
   runner.run("completed rejection becomes one pending value", [&] {
     TEST_CHECK(projection.pending().size() == 1U);
   });

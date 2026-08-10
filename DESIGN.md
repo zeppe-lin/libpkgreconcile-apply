@@ -11,6 +11,7 @@ application_target_context
 libpkgreconcile-apply
         |
         +-- managed target reference
+        +-- accepted plan + physical attempt
         +-- rejected store + record locator
         +-- canonical path
         +-- retained side
@@ -49,8 +50,11 @@ to equal the target context identity retained by completed evidence. It then
 projects only path consequences that carry a completed rejected-object record.
 
 The completed-evidence constructor in `libpkgapply` is the authority that proves
-those path consequences are complete and internally coherent. This adapter does
-not re-plan the operation or reinterpret policy reasons.
+those path consequences are complete and internally coherent. The projection
+therefore retains the completed evidence's exact operation plan and physical application attempt so a
+provider composition can bind a reopened rejected record back to that same
+operation. This adapter does not re-plan the operation or reinterpret policy
+reasons.
 
 ## Non-goals
 

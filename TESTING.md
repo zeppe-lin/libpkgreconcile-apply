@@ -15,6 +15,7 @@ refused.
 - a planner-produced protected incoming upgrade projects to `incoming`;
 - a planner-produced preserved old removal projects to `prior_installed`;
 - exact managed-target identity survives projection;
+- exact plan and physical attempt identities survive projection;
 - exact rejected-store and record identities survive locator round-trip; and
 - completed evidence bound to another target context is refused.
 
