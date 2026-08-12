@@ -5,19 +5,19 @@ set -eu
 root=$1
 meson=$root/tests/meson.build
 fail() { echo "test-layout-contract: $*" >&2; exit 1; }
-for directory in unit integration header support contracts; do
+for directory in unit protocol integration header support contracts; do
   [ -d "$root/tests/$directory" ] || fail "missing tests/$directory"
 done
-for suite in unit integration header contract; do
+for suite in unit protocol integration header contract; do
   grep -F "suite: '$suite'" "$meson" >/dev/null || fail "Meson does not register the $suite suite"
 done
-for forbidden in mechanism protocol; do
+for forbidden in mechanism; do
   [ ! -d "$root/tests/$forbidden" ] || fail "decorative tests/$forbidden category exists"
 done
 if find "$root/tests" -maxdepth 1 -type f \( -name '*.cpp' -o -name '*.hpp' -o -name '*.sh' \) | grep . >/dev/null; then
   fail 'uncategorized test source remains at tests/ root'
 fi
-for source in "$root"/tests/unit/*_test.cpp "$root"/tests/integration/*_test.cpp "$root"/tests/header/*_test.cpp; do
+for source in "$root"/tests/unit/*_test.cpp "$root"/tests/protocol/*_test.cpp "$root"/tests/integration/*_test.cpp "$root"/tests/header/*_test.cpp; do
   relative=${source#"$root/tests/"}
   grep -F "$relative" "$meson" >/dev/null || fail "test source is not registered: $relative"
 done

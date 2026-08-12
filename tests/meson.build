@@ -5,7 +5,6 @@ if get_option('tests').allowed()
   sh = find_program('sh')
 
   unit_tests = [
-    ['reference-translation', 'unit/reference_translation_test.cpp'],
     ['error-model', 'unit/error_model_test.cpp'],
   ]
   foreach item : unit_tests
@@ -18,6 +17,15 @@ if get_option('tests').allowed()
     )
     test(item[0], target, suite: 'unit')
   endforeach
+
+  protocol_test = executable(
+    'reference-schema-test',
+    'protocol/reference_schema_test.cpp',
+    dependencies: libpkgreconcile_apply_dep,
+    cpp_args: ['-UNDEBUG'],
+    install: false,
+  )
+  test('reference-schema', protocol_test, suite: 'protocol')
 
   # This suite composes real planner/application semantics. These dependencies
   # are qualification-only and do not enter the product dependency boundary.

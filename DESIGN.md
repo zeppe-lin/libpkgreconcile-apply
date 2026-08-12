@@ -43,6 +43,14 @@ The encoding is adapter-owned and fixed-width under provider/schema
 `libpkgreconcile-apply/rejected-object/v1`. Consumers must use the decoder;
 they must not infer a filesystem pathname or enumerate store contents.
 
+## Durable reference protocol
+
+The managed-target reference and rejected-object locator are durable adapter-owned
+protocol values even though this library does not own the outer inventory framing.
+`libpkgreconcile-posix` persists each provider identifier and opaque payload
+verbatim. Their exact byte layouts are therefore protocol, not an implementation
+detail shared only by the encoder and decoder.
+
 ## Evidence admission
 
 `project_completed_application()` requires the supplied target context identity

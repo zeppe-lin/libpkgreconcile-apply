@@ -4,9 +4,16 @@ The test tree is divided by responsibility.
 
 ## Unit
 
-`unit/` qualifies the adapter-owned binary reference schemas and strict inverse
-translation. Foreign provider identifiers and malformed payload lengths are
-refused.
+`unit/` qualifies the stable typed projection error model.
+
+## Protocol
+
+`protocol/` qualifies the adapter-owned durable opaque reference schemas. The
+managed-target payload is exactly the 32 digest bytes. The rejected-object
+payload is exactly the 32 rejected-store digest bytes followed by the 32
+rejected-record digest bytes. Decoder cases are built independently of the
+encoders so an encoder/decoder pair cannot drift together unnoticed. Foreign
+providers and malformed payload lengths are refused.
 
 ## Integration
 
@@ -31,5 +38,7 @@ Contracts police architecture, exact ELF ABI, pkg-config closure, release
 metadata, repository shape, style, documentation truth, CI qualification, and
 test topology.
 
-There is intentionally no mechanism or protocol suite. This repository owns no
-filesystem mechanism and no durable serialization protocol.
+There is intentionally no mechanism suite. This repository owns no filesystem
+mechanism and no standalone durable framing codec, but its opaque reference
+payloads are durable protocol values because reconciliation providers persist
+them verbatim.

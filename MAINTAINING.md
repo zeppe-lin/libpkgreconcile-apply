@@ -10,7 +10,8 @@ Do not add filesystem discovery, rejected-store path knowledge, state-database
 access, transaction orchestration, or user-interface decisions.
 
 Changing either provider identifier or the byte layout behind it is a protocol
-change even though `libpkgreconcile` treats the bytes as opaque. Such a change
-requires a new provider/schema identifier and compatibility analysis.
+change even though `libpkgreconcile` treats the bytes as opaque. Before the first
+production use, replace the current schema in place and keep it at version 1;
+after production use, such a change requires explicit compatibility analysis.
 
 The shared ABI is reviewed through `abi/libpkgreconcile-apply.exports`.

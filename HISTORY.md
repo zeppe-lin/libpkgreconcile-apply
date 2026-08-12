@@ -10,3 +10,4 @@ Initial native application-to-reconciliation adapter.
 - Projects rejected-store plus rejected-record authority into opaque locators.
 - Projects completed incoming and old rejected consequences into pending values.
 - Refuses target-context mismatches.
+- Pins the exact durable managed-target and rejected-object reference schemas.

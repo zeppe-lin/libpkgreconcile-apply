@@ -14,10 +14,10 @@ for required in \
   tests/meson.build; do
   [ -s "$root/$required" ] || fail "missing or empty $required"
 done
-for directory in tests/unit tests/integration tests/header tests/support tests/contracts; do
+for directory in tests/unit tests/protocol tests/integration tests/header tests/support tests/contracts; do
   [ -d "$root/$directory" ] || fail "missing $directory"
 done
-for forbidden in tools protocol mechanism; do
+for forbidden in tools mechanism; do
   [ ! -e "$root/$forbidden" ] || fail "unexpected repository surface: $forbidden"
 done
 printf '%s\n' 'repository-contract: ok'

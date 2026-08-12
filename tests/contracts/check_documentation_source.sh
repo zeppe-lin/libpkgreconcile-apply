@@ -23,6 +23,9 @@ grep -F '32-byte' "$root/README.md" >/dev/null || fail 'README omits target dige
 grep -F '64 bytes' "$root/README.md" >/dev/null || fail 'README omits object locator width'
 grep -F '32-byte' "$root/man/libpkgreconcile-apply.3.scdoc" >/dev/null || fail 'manual omits target digest width'
 grep -F '64 bytes' "$root/man/libpkgreconcile-apply.3.scdoc" >/dev/null || fail 'manual omits object locator width'
+grep -F 'durable protocol values' "$root/README.md" >/dev/null || fail 'README does not identify durable reference protocol'
+grep -F 'Durable reference protocol' "$root/DESIGN.md" >/dev/null || fail 'DESIGN omits durable reference protocol ownership'
+grep -F '## Protocol' "$root/TESTING.md" >/dev/null || fail 'TESTING omits protocol suite'
 
 for document in "$root/README.md" "$root/DESIGN.md" "$root/man/libpkgreconcile-apply.3.scdoc"; do
   grep -Ei 'operation[- ]plan' "$document" >/dev/null || fail "$(basename "$document") omits retained plan authority"

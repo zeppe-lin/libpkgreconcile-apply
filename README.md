@@ -43,6 +43,10 @@ implementation.
 `decode_managed_target()` and `decode_rejected_object_locator()` are the
 canonical inverse operations for these adapter-owned schemas.
 
+These provider identifiers and payload bytes are durable protocol values. A
+reconciliation persistence provider stores them as opaque authority; changing
+their layout is not a private refactor.
+
 ## Side mapping
 
 The retained side is derived only from the accepted rejected outcome:
