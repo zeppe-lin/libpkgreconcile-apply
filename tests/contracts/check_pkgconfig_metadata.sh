@@ -11,7 +11,7 @@ version=$(sed -n 's/^Version:[[:space:]]*//p' "$pc")
 [ "$version" = "$expected_version" ] || fail "version is '$version', expected '$expected_version'"
 requires=$(sed -n 's/^Requires:[[:space:]]*//p' "$pc")
 case $requires in
-  *'libpkgreconcile >= 0.3.0'*'libpkgapply >= 3.0.0'*) ;;
+  *'libpkgreconcile >= 0.3.0'*'libpkgapply >= 3.0.1'*) ;;
   *) fail 'public dependency closure is not libpkgreconcile + libpkgapply' ;;
 esac
 if grep -E 'libpkgapply-posix|libpkgreconcile-posix|libpkgstate|pkgctl' "$pc" >/dev/null; then

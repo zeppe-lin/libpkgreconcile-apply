@@ -18,5 +18,18 @@ for compiler in 'cxx: g++' 'cxx: clang++'; do
 done
 grep -F 'b_sanitize=address,undefined' "$workflow" >/dev/null || fail 'CI does not qualify ASan+UBSan'
 grep -F 'doxygen Doxyfile' "$workflow" >/dev/null || fail 'CI does not validate Doxygen'
-grep -F 'ref: v0.3.0' "$workflow" >/dev/null || fail 'CI does not pin libpkgreconcile 0.3.0'
+for pin in \
+  'libpkgsource, ref: v4.1.0' \
+  'libpkgcatalog, ref: v4.0.0' \
+  'libpkgresolve, ref: v4.0.0' \
+  'libpkgbuild, ref: v3.0.1' \
+  'libpkgbuild-image, ref: v1.0.1' \
+  'libpkgsource-plan, ref: v2.0.0' \
+  'libpkgbuild-plan, ref: v1.1.0' \
+  'libpkgapply, ref: v3.0.1' \
+  'libpkgreconcile, ref: v0.3.0'
+do
+  grep -F "$pin" "$workflow" >/dev/null || fail "CI does not pin current authority: $pin"
+done
+! grep -F 'libpkgsource, ref: v3.' "$workflow" >/dev/null || fail 'CI still admits source ABI 3'
 printf '%s\n' 'ci-qualification-source-contract: ok'
