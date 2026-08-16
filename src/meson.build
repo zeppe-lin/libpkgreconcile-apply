@@ -39,6 +39,8 @@ libpkgreconcile_apply_dep = declare_dependency(
   dependencies: [libpkgreconcile_dep, libpkgapply_dep],
 )
 
+meson.override_dependency('libpkgreconcile-apply', libpkgreconcile_apply_dep)
+
 install_headers(
   '../include/libpkgreconcile-apply/export.h',
   '../include/libpkgreconcile-apply/adapter.h',
