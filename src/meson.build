@@ -53,5 +53,5 @@ pkgconf.generate(
   name: 'libpkgreconcile-apply',
   description: 'Completed application to reconciliation projection',
   version: meson.project_version(),
-  requires: ['libpkgreconcile >= 0.3.0', 'libpkgapply >= 4.0.0', 'libpkgapply < 5.0.0'],
+  requires: [libpkgreconcile_dep, libpkgapply_dep],
 )
