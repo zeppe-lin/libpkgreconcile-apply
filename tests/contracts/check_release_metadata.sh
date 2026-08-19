@@ -4,11 +4,11 @@
 set -eu
 root=$1
 fail() { echo "release-metadata-contract: $*" >&2; exit 1; }
-grep -F "version: '0.1.1'" "$root/meson.build" >/dev/null || fail 'Meson project version is not 0.1.1'
+grep -F "version: '0.1.2'" "$root/meson.build" >/dev/null || fail 'Meson project version is not 0.1.2'
 grep -F "meson_version: '>=1.6.0'" "$root/meson.build" >/dev/null || fail 'Meson floor is not 1.6.0'
 grep -F "soversion: '0'" "$root/src/meson.build" >/dev/null || fail 'shared-library ABI generation is not 0'
-grep -F 'PROJECT_NUMBER          = 0.1.1' "$root/Doxyfile" >/dev/null || fail 'Doxygen version is stale'
-grep -F "libpkgapply_dep = dependency('libpkgapply', version: '>=3.0.1'" "$root/meson.build" >/dev/null || fail 'application dependency floor is not 3.0.1'
-grep -F '## 0.1.1' "$root/HISTORY.md" >/dev/null || fail '0.1.1 history entry is missing'
+grep -F 'PROJECT_NUMBER          = 0.1.2' "$root/Doxyfile" >/dev/null || fail 'Doxygen version is stale'
+grep -F "libpkgapply_dep = dependency('libpkgapply', version: ['>=4.0.0', '<5.0.0']" "$root/meson.build" >/dev/null || fail 'application dependency interval is not >=4.0.0,<5.0.0'
+grep -F '## 0.1.2' "$root/HISTORY.md" >/dev/null || fail '0.1.2 history entry is missing'
 [ -s "$root/abi/libpkgreconcile-apply.exports" ] || fail 'reviewed ABI manifest is missing'
 printf '%s\n' 'release-metadata-contract: ok'

@@ -76,6 +76,14 @@ if get_option('tests').allowed()
     test('header-' + item[0], target, suite: 'header')
   endforeach
 
+  abi_layout_test = executable(
+    'abi-layout-test',
+    'contracts/abi_layout_test.cpp',
+    dependencies: libpkgreconcile_apply_dep,
+    install: false,
+  )
+  test('abi-layout', abi_layout_test, suite: 'contract')
+
   if library_kind == 'shared'
     nm = find_program('nm')
     test(
@@ -86,6 +94,15 @@ if get_option('tests').allowed()
         nm.full_path(),
         pkg_reconcile_apply.full_path(),
         meson.project_source_root() / 'abi/libpkgreconcile-apply.exports',
+      ],
+      suite: 'contract',
+    )
+    test(
+      'apply-abi-generation',
+      sh,
+      args: [
+        meson.current_source_dir() / 'contracts/check_apply_abi_generation.sh',
+        pkg_reconcile_apply.full_path(),
       ],
       suite: 'contract',
     )

@@ -1,5 +1,21 @@
 # History
 
+## 0.1.2
+
+Application-ABI-4 dependency-closure release.
+
+- Rebind reconciliation projection to the published `libpkgapply 4.x`
+  append-only application authority generation.
+- Keep `libpkgreconcile-apply.so.0` and the reviewed 20-symbol ABI surface after
+  qualifying the by-value rejected-store, rejected-record, attempt, and complete
+  adapter carriers across application 3.0.1 and 4.0.0; their x86-64 size and
+  alignment are unchanged.
+- Require `libpkgapply >=4.0.0,<5.0.0` in Meson, pkg-config metadata and hosted
+  qualification, and add a shared-product generation contract requiring
+  `libpkgapply.so.4`.
+- Keep the managed-target and rejected-object durable reference schemas at
+  generation 1; no reference payload format changed.
+
 ## 0.1.1
 
 Source-ABI-4 dependency-closure release.

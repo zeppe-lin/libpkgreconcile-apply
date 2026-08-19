@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 project(
   'libpkgreconcile-apply', 'cpp',
-  version: '0.1.1',
+  version: '0.1.2',
   license: 'GPL-3.0-or-later',
   meson_version: '>=1.6.0',
   default_options: ['cpp_std=c++17', 'warning_level=3', 'default_library=shared', 'b_ndebug=if-release'],
@@ -22,7 +22,7 @@ if cpp.has_argument('-fvisibility-inlines-hidden')
 endif
 pkgconf = import('pkgconfig')
 libpkgreconcile_dep = dependency('libpkgreconcile', version: '>=0.3.0', required: true, static: want_static)
-libpkgapply_dep = dependency('libpkgapply', version: '>=3.0.1', required: true, static: want_static)
+libpkgapply_dep = dependency('libpkgapply', version: ['>=4.0.0', '<5.0.0'], required: true, static: want_static)
 subdir('src')
 subdir('man')
 subdir('tests')

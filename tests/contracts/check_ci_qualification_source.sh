@@ -26,7 +26,7 @@ for pin in \
   'libpkgbuild-image, ref: v1.0.1' \
   'libpkgsource-plan, ref: v2.0.0' \
   'libpkgbuild-plan, ref: v1.1.0' \
-  'libpkgapply, ref: v3.0.1' \
+  'libpkgapply, ref: v4.0.0' \
   'libpkgreconcile, ref: v0.3.0'
 do
   grep -F "$pin" "$workflow" >/dev/null || fail "CI does not pin current authority: $pin"

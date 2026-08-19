@@ -21,6 +21,9 @@ for source in "$root"/tests/unit/*_test.cpp "$root"/tests/protocol/*_test.cpp "$
   relative=${source#"$root/tests/"}
   grep -F "$relative" "$meson" >/dev/null || fail "test source is not registered: $relative"
 done
+[ -s "$root/tests/contracts/abi_layout_test.cpp" ] || fail 'ABI layout contract source is missing'
+grep -F "'abi-layout'" "$meson" >/dev/null || fail 'ABI layout contract is not registered'
+
 for source in "$root"/tests/contracts/*.sh; do
   base=$(basename "$source")
   stem=${base#check_}; stem=${stem%.sh}
